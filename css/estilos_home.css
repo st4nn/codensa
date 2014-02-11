@@ -1,0 +1,98 @@
+body
+{
+    background: url('Img/llave.png') no-repeat 100% center, 
+                #f8f8f8;
+    display: inline-block;
+    font-family: "Helvetica";
+    font-size: 15px;
+    text-align: center;
+}
+footer
+{
+    font-size: 2em;
+    text-align: right;
+}
+header
+{
+    background: #A1C4FD;
+    border-radius: 10px;
+}
+header h1
+{
+    background: #022b6b;
+    color: white;
+}
+
+.boton 
+{
+    -moz-box-shadow:inset 0px 1px 20px 0px #56b8f5;
+    -webkit-box-shadow:inset 0px 1px 20px 0px #56b8f5;
+    box-shadow:inset 0px 1px 20px 0px #56b8f5;
+    background-color:#63b8ee;
+    -webkit-border-top-left-radius:9px;
+    -moz-border-radius-topleft:9px;
+    border-top-left-radius:9px;
+    -webkit-border-top-right-radius:9px;
+    -moz-border-radius-topright:9px;
+    border-top-right-radius:9px;
+    -webkit-border-bottom-right-radius:0px;
+    -moz-border-radius-bottomright:0px;
+    border-bottom-right-radius:0px;
+    -webkit-border-bottom-left-radius:9px;
+    -moz-border-radius-bottomleft:9px;
+    border-bottom-left-radius:9px;
+    text-indent:0px;
+    border:1px solid #3866a3;
+    display:inline-block;
+    color:#14396a;
+    font-family:Arial;
+    font-size:24px;
+    font-weight:bold;
+    font-style:normal;
+    height:3em;
+    line-height:54px;
+    width:40%;
+    text-decoration:none;
+    text-align:center;
+    text-shadow:5px 1px 0px #7cacde;
+}.boton:hover 
+{
+    background-color:#468ccf;
+}.boton:active 
+{
+    position:relative;
+    top:1px;
+}
+.inputForm
+{
+    background-color: white;
+    border-color: black;
+    border-style:solid;
+    border-width:1px;
+    font-size: 3em;
+    margin: 0.8em 0 0.8em 0;
+    padding: 0.4em 0.6em 0.4em 0.6em;
+    width: 45%;
+}
+.labelForm
+{
+    float: left; 
+    clear: right;
+    font-size: 2em;
+    margin: 0.8em 0 0.8em 0;
+    padding: 0.4em 0.6em 0.4em 0.6em;
+    text-align: right;    
+    width: 30%;
+}
+#headImg1
+{
+    margin: 15px 0 0 0;
+    position: absolute;
+}
+#headImg2
+{
+    float: right;
+    margin: 0;
+    position: absolute;
+    right: 0;
+}

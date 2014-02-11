@@ -1,0 +1,193 @@
+.titulos {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: #333333;
+        font-weight: normal;
+        background-color: #FEFEFE;
+}
+.titulosFondoGris {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: #333333;
+        font-weight: normal;
+        background-color: #EFEFEF;
+}
+.titulosGraficaRojo {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: #FFFFFF;
+        font-weight: normal;
+        background-color: #8b0a50;
+		bgcolor="#8b0a50"
+}
+ .titulosGraficaCafe {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: #333333;
+        font-weight: normal;
+        background-color: #ee6a50;		
+		bgcolor="#ee6a50"
+}
+.titulosGraficaAmarilla {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: #333333;
+        font-weight: normal;
+        background-color: #fff68f;		
+		bgcolor="#fff68f"
+}
+.titulosFondoGrisGrande{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        color: #333333;
+        font-weight: normal;
+        background-color: #EFEFEF;
+}
+.titulosFondoGrisP {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9px;
+        color: #333333;
+        font-weight: normal;
+        background-color: #EFEFEF;
+}
+.titulosGrandes {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        color: #333333;
+        font-weight: normal;
+        background-color: #FEFEFE;
+}
+.TitulosDirectrices {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        color: #333333;
+        font-weight: normal;
+        background-color: #FEFEFE;
+}
+
+.titulosRojo {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: #FF0000;
+        font-weight: normal;
+}
+.titulosRojoGrande {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        color: #FF0000;
+        font-weight: normal;
+}
+.Botones {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        font-weight: bold;
+        color: #000000;
+        font-style: normal;
+        background-color: #EEEEEE;
+}
+
+.Fondogris {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+        font-style: normal;
+        background-color: #EEEEEE;
+
+}
+.FondogrisTitulos {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        color: #000000;
+        font-style: normal;
+        background-color: #EBF7FE;
+
+}
+.TitulosTablas {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        text-transform: uppercase;
+        background-color: #000099;
+        font-weight: bold;
+        color: #FFFFFF;
+}
+
+.TitulosTablasArchivo {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        text-transform: uppercase;
+        background-color: #000000;
+        font-weight: bold;
+        color: #FFFFFF;
+}
+
+.TitulosTablasLetras {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9px;
+        text-transform: uppercase;
+        background-color: #003399;
+        font-weight: bold;
+        color: #FFFFFF;
+}
+
+.TitulosTablasDirectrices {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        text-transform: uppercase;
+        background-color: #000099;
+        font-weight: bold;
+        color: #FFFFFF;
+}
+
+.TituloP {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 9px;
+}
+.TituloPN {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #000000;
+}
+.TituloG {
+               font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+}
+.TituloGrande {
+               font-family: Arial, Helvetica, sans-serif;
+        font-size:20px;
+        font-weight: bold;
+}
+.Cajones {
+               font-family: Arial, Helvetica, sans-serif;
+        font-size:20px;
+}
+.TitulosTablasOtro {
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        text-transform: uppercase;
+        background-color: #EDF7EA;
+        font-weight: bold;
+        color: #000000;
+}
+.TitulosTablasOtroNuevo {
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        text-transform: uppercase;
+        background-color: #000099;
+        font-weight: bold;
+        color: #FFFFFF;
+}
+.TitulosConsultoria {
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        text-transform: uppercase;
+        background-color: ##0CE0B0;
+        font-weight: bold;
+        color: #000000;
+}
