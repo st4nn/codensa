@@ -62,6 +62,8 @@ if($nivel=="")
 					FROM         IPAL_USUARIOS_PC
 					where US_USUARIO='$usr'", 107, "Principal.php");
  $q->Cargar();
+
+
  $EM_IDbd=$q->dato(0);
 ?>
 <BR>
@@ -107,11 +109,13 @@ if($nivel=="")
           </script></td>
       </tr>
       <tr>
-            <td class="Fondogris">Formato</td>
+        <td colspan="4" ><table width="100%"  border="0" cellspacing="1" cellpadding="1">
+          <tr>
+ <td class="Fondogris">Formato</td>
             <td width="137" >
             <?
 			 $nombre='formato';
-             if($usr=='cperez')
+             if($usr=='crodriguez')
 			 {
 			?>
             <select name="<?=$nombre?>" id="<?=$nombre?>" class="titulos">
@@ -127,6 +131,21 @@ if($nivel=="")
 			}
 			?>
             </td>
+<td class="Fondogris">Tipo</td>
+            <td><select name="GE_TCOPILOTO"  id="GE_TCOPILOTO"  class="titulos">
+           <option value="">Seleccione</option>
+	          				  <?
+				   $sql="SELECT DISTINCT GE_TCOPILOTO
+							FROM      ipal
+                       		where GE_TCOPILOTO is not null
+							order by  GE_TCOPILOTO";
+				   $q->ejecutar($sql,101,'BuscarGuiaTotal.php');	   
+				   while($q->Cargar())
+				   { 
+					   ?><option value="<?=$q->dato(0)?>" ><?=$q->dato(0)?></option><?
+					}  
+				  ?>
+              </select></td>
             <td  class="Fondogris" align="left">Tipo de inspeccion: </td>
 	   <td><select name="GE_TINSPECCION"  id="GE_TINSPECCION"  class="titulos">
            <option value="">Seleccione</option>
@@ -142,7 +161,11 @@ if($nivel=="")
 					}  
 				  ?>
               </select></td>
-      </tr>
+            
+          </tr>
+        </table></td>
+        </tr>
+
       
       <tr>
         <td width="67" class="Fondogris"><div align="left">Empresa: </div></td>
@@ -250,6 +273,8 @@ if($nivel=="1")
   <input type="hidden" name="FECHA2" value="<?=$FECHA2?>">
   <input type="hidden" name="formato" value="<?=$formato?>">
   <input type="hidden" name="GE_TINSPECCION" value="<?=$GE_TINSPECCION?>">  
+  <input type="hidden" name="GE_TCOPILOTO" value="<?=$GE_TCOPILOTO?>">  
+
   <input type="hidden" name="NIVEL" value="1">    
   <input type="hidden" name="usr" value="<?=$usr?>">    
   <input type="hidden" name="us_menu" value="<?=$us_menu?>">      
@@ -330,18 +355,10 @@ if($nivel=="1")
 	if($EM_ID<>"")$sql.=" and EMPRESAS.EM_ID=".$EM_ID;
 	if($PR_ID<>"")$sql.=" and IPAL.PR_ID=".$PR_ID;
 	if($EC_ID<>"")$sql.=" and IPAL.EC_ID=".$EC_ID;	
-  if($GE_TINSPECCION<>"")
-      {
-        if($GE_TINSPECCION=="COPILOTO")
-          {
-            $sql.=" and IPAL.GE_TCOPILOTO='".$GE_TINSPECCION."'";    
-          } else 
-        {
-          $sql.=" and IPAL.GE_TINSPECCION='".$GE_TINSPECCION."'";  
-        }
-      }
-	
-    
+	if($GE_TINSPECCION<>"")$sql.=" and IPAL.GE_TINSPECCION='".$GE_TINSPECCION."'";	
+	if($GE_TCOPILOTO<>"")$sql.=" and IPAL.GE_TCOPILOTO='".$GE_TCOPILOTO."'";	
+
+   
 	$sql.=" group by GE_RESULTADOIPAL 
 	        order by GE_RESULTADOIPAL";
 	
@@ -382,16 +399,8 @@ if($nivel=="1")
 	if($FECHA2<>"")$sql.=" and IPAL.GE_FECHA<= convert(datetime,'".$FECHA2." 23:00' ,120)";	
 	if($EM_ID<>"")$sql.=" and EMPRESAS.EM_ID=".$EM_ID;
 	if($PR_ID<>"")$sql.=" and IPAL.PR_ID=".$PR_ID;
-    if($GE_TINSPECCION<>"")
-      {
-        if($GE_TINSPECCION=="COPILOTO")
-          {
-            $sql.=" and IPAL.GE_TCOPILOTO='".$GE_TINSPECCION."'";    
-          } else 
-        {
-          $sql.=" and IPAL.GE_TINSPECCION='".$GE_TINSPECCION."'";  
-        }
-      }
+	if($GE_TINSPECCION<>"")$sql.=" and IPAL.GE_TINSPECCION='".$GE_TINSPECCION."'";	
+	if($GE_TCOPILOTO<>"")$sql.=" and IPAL.GE_TCOPILOTO='".$GE_TCOPILOTO."'";	
       
 	if($EC_ID<>"")$sql.=" and IPAL.EC_ID=".$EC_ID;					  
 	//$sql.="  order by NC_CLASIFICACION.CL_ID";
@@ -403,37 +412,38 @@ if($nivel=="1")
 	// (IPAL.GE_BVERIFTERRENO = 'CERRADA')
 	while($q->Cargar())
 	{ 
-	  $sql="SELECT     IPAL.GE_NO_INSPECCION, NC_LISTADO.NC_ID, ".$campo."
-FROM         EMPRESA_CONTRATOS INNER JOIN
-                      EMPRESAS ON EMPRESA_CONTRATOS.EM_ID = EMPRESAS.EM_ID INNER JOIN
-                      IPAL ON EMPRESA_CONTRATOS.EC_ID = IPAL.EC_ID INNER JOIN
-                      NC_SUBCLASIFICACION INNER JOIN
-                      NC_LISTADO ON NC_SUBCLASIFICACION.CL_ID = NC_LISTADO.CL_ID AND NC_SUBCLASIFICACION.SB_ID = NC_LISTADO.SB_ID INNER JOIN
-                      IPAL_DETALLE ON NC_LISTADO.NC_ID = IPAL_DETALLE.NC_ID ON IPAL.GE_NO_INSPECCION = IPAL_DETALLE.GE_NO_INSPECCION
-			where    (IPAL.GE_BVERIFTERRENO = 'CERRADA')  and  IPAL_DETALLE.DE_RESULTADO='NO' and NC_LISTADO.NC_VALOR is not null AND NC_SUBCLASIFICACION.CL_ID=".$q->dato(0);
+	  $sql="SELECT     
+            IPAL.GE_NO_INSPECCION, 
+            NC_LISTADO.NC_ID, 
+            ".$campo."
+          FROM 
+            EMPRESA_CONTRATOS 
+            INNER JOIN EMPRESAS ON EMPRESA_CONTRATOS.EM_ID = EMPRESAS.EM_ID 
+            INNER JOIN IPAL ON EMPRESA_CONTRATOS.EC_ID = IPAL.EC_ID 
+            INNER JOIN NC_SUBCLASIFICACION 
+            INNER JOIN NC_LISTADO ON NC_SUBCLASIFICACION.CL_ID = NC_LISTADO.CL_ID AND NC_SUBCLASIFICACION.SB_ID = NC_LISTADO.SB_ID 
+            INNER JOIN IPAL_DETALLE ON NC_LISTADO.NC_ID = IPAL_DETALLE.NC_ID ON IPAL.GE_NO_INSPECCION = IPAL_DETALLE.GE_NO_INSPECCION 
+			   where    
+            (IPAL.GE_BVERIFTERRENO = 'CERRADA')  
+            AND IPAL_DETALLE.DE_RESULTADO='NO' 
+            AND NC_LISTADO.NC_VALOR is not null 
+            AND NC_SUBCLASIFICACION.CL_ID=".$q->dato(0);
 
-	    if($formato==2011)$sql.=" and NC_LISTADO.NC_VALOR2011 >0";	
-        if($formato==2012)$sql.=" and NC_LISTADO.NC_VALOR >0";	
+    if($formato==2011)$sql.=" and NC_LISTADO.NC_VALOR2011 >0";	
+    if($formato==2012)$sql.=" and NC_LISTADO.NC_VALOR >0";	
 		if($FECHA1<>"")$sql.=" and IPAL.GE_FECHA>= convert(datetime,'".$FECHA1."',120)";
 		if($FECHA2<>"")$sql.=" and IPAL.GE_FECHA<= convert(datetime,'".$FECHA2." 23:00' ,120)";	
 		if($EM_ID<>"")$sql.=" and EMPRESAS.EM_ID=".$EM_ID;
 		if($EC_ID<>"")$sql.=" and IPAL.EC_ID=".$EC_ID;					  
 		if($PR_ID<>"")$sql.=" and IPAL.PR_ID=".$PR_ID;
-    if($GE_TINSPECCION<>"")
-      {
-        if($GE_TINSPECCION=="COPILOTO")
-          {
-            $sql.=" and IPAL.GE_TCOPILOTO='".$GE_TINSPECCION."'";    
-          } else 
-        {
-          $sql.=" and IPAL.GE_TINSPECCION='".$GE_TINSPECCION."'";  
-        }
-      }
+	  if($GE_TINSPECCION<>"")$sql.=" and IPAL.GE_TINSPECCION='".$GE_TINSPECCION."'";	
+	  if($GE_TCOPILOTO<>"")$sql.=" and IPAL.GE_TCOPILOTO='".$GE_TCOPILOTO."'";	
     	
 		
 		$sql.=" order by SUB_ORDEN";
 	    //echo $sql."<br>";
 	    $s->ejecutar($sql,330,'BuscarCalculoIpal.php');		
+      
 		while($s->Cargar())
 		{ 
 		  $SQL="SELECT  1
@@ -447,6 +457,7 @@ FROM         EMPRESA_CONTRATOS INNER JOIN
 			 
 			 $sql2="insert into  IPAL_CALCULO_TOTAL ( US_ID, GE_NO_INSPECCION , NC_ID, VALOR )
 			   			       values($US_ID, ".$s->dato(0).",'".$s->dato(1)."',".$s->dato(2).")";
+        
 			 $m->ejecutar($sql2,344,'BuscarCalculoIpal.php');			   
 			// echo $sql2."<br>";
 		  }	// IF THE FILA 
@@ -466,7 +477,7 @@ $SQL="SELECT  US_ID, GE_NO_INSPECCION , NC_ID, VALOR
     <td colspan="4" class="TitulosTablas"><div align="center">LISTADO INCUMPLIMIENTOS&nbsp;</div></td>
   </tr>
   <tr>
-    <td class="titulosFondoGris">Identifiacor</td>
+    <td class="titulosFondoGris">Identifiacdor</td>
     <td class="titulosFondoGris">No de inspeccion </td>
     <td class="titulosFondoGris"><div align="center">Incumplimiento</div></td>
     <td class="titulosFondoGris"><div align="center">Valor consecuencia </div></td>	
@@ -500,6 +511,7 @@ $SQL="SELECT  US_ID, GE_NO_INSPECCION , NC_ID, VALOR
 			GROUP BY NC_LISTADO.SB_ID";
   
   $s->ejecutar($SQL,395,'BuscarCalculoIpal.php');		
+  
   while($s->Cargar())
   { 
 		  $SQL="SELECT  1
@@ -534,6 +546,8 @@ $SQL="SELECT  US_ID, GE_NO_INSPECCION , NC_ID, VALOR
 			 $sql2="insert into 
 			   IPAL_CALCULO_RANGO (US_ID, SB_ID, CANTIDAD, RESDIVI, FAC_MULTIPLICADOR)
 			  	       values($US_ID, '".$s->dato(0)."','".$s->dato(1)."', $RESDIVI, $fac)";
+
+        
 			 $q->ejecutar($sql2,424,'BuscarCalculoIpal.php');			   
 			// echo $sql2."<br>";
 		  }	// IF THE FILA 
@@ -552,7 +566,7 @@ $SQL="SELECT  US_ID,SB_ID, CANTIDAD, RESDIVI, FAC_MULTIPLICADOR
     <td colspan="6" class="TitulosTablas"><div align="center">ASPECTOS INCUMPLIDOS </div></td>
   </tr>
   <tr>
-    <td width="60" class="titulosFondoGris">Identifiacor</td>
+    <td width="60" class="titulosFondoGris">Identificador</td>
     <td width="90" class="titulosFondoGris"><div align="center">Aspecto</div></td>
     <td width="121" class="titulosFondoGris"><div align="center">Cantidad (A) </div></td>	
     <td width="86" class="titulosFondoGris"><div align="center">% de frecuecia:<br> 
@@ -792,7 +806,6 @@ $sql="SELECT   DEFINICION	, COLOR
         <td colspan="4" align="center"><!--<input type="submit" name="Submit2" value="Guardar" onClick="calculo.NIVEL.value=2">--></td>
       </tr>	  
 </table>
-
 <?
 	if($NIVEL==2)
 	{
@@ -810,7 +823,6 @@ $sql="SELECT   DEFINICION	, COLOR
 		$sql4="insert into IPAL_RESULTADO (FECHA1, FECHA2, EM_ID, EC_CONTRATO, TIPO, FORMATO, TCFELIZ, TCTRISTE, SUMATORIA, IPAL)
 								 VALUES(CONVERT( DATETIME, '$FECHA1' ,120), CONVERT( DATETIME, '$FECHA2' ,120), 
 									  $EMP, $CONTRATO, '$TIPO', '$formato', ".$arrCarita[0][0].", ".$arrCarita[1][0].", $SUMATORIA, $CalculoIpal) ";
-								 
 		  $s->ejecutar($sql4,694,'GuardarListado.php');	 
 	  }
 	  if($Nofilas==1)
