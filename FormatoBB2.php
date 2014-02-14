@@ -184,7 +184,16 @@ if($GE_NO_INSPECCION<>"")
    
      $GE_AAA=$q->dato(11);                 
      $GE_MES=$q->dato(12);                 
-     $GE_DIA=$q->dato(13);  
+     $GE_DIA=$q->dato(13); 
+
+     if (strlen($GE_DIA) == 1) 
+     {
+        $GE_DIA = "0$GE_DIA";
+     }
+     if (strlen($GE_MES) == 1) 
+     {
+        $GE_MES = "0$GE_MES";
+     }
      
      $GE_PGRUA=$q->dato(14);                 
      $GE_PCANASTA=$q->dato(15);                
@@ -257,7 +266,7 @@ if( strlen($GE_InicioMinuto) == 1)
       <tr>
         <td width="67%"><table width="100%" border="1" cellpadding="0" cellspacing="0">
           <tr>
-            <td colspan="4" class="titulosRojoGrande" align="left"><?
+            <td colspan="4" align="left"><?
               if($GE_NO_INSPECCION=="")
               {?>
         No de inspeccion:&nbsp;
@@ -279,8 +288,7 @@ if( strlen($GE_InicioMinuto) == 1)
                 <div align="left">Fecha Inspeccion</div>
             </td>
             <td colspan='2' width='60%' align="center">
-              <input type="date" id="GE_Fecha" onchange='DiligenciandoFecha()' value='<? echo "$GE_DIA/$GE_MES/$GE_AAA" ?>'/>              </td>
-              <!--<div align="left">Ins. Fallida<input name="GE_VFALLIDA" type="checkbox" value="1" <? if($GE_VFALLIDA=='SI') ECHO "checked"?>></div>-->
+              <input type="date" id="GE_Fecha" onchange='DiligenciandoFecha()' value='<? echo "$GE_AAA-$GE_MES-$GE_DIA"; ?>'/>
             </td>
             <td width='20%' colspan='2'>
               <input type="checkbox" name="GE_VFALLIDA" id="GE_VFALLIDA" <? if($GE_VFALLIDA=='SI') ECHO "checked"?>>
@@ -293,9 +301,9 @@ if( strlen($GE_InicioMinuto) == 1)
               <span>Año:</span>
               <input name="GE_AAA" type="text" class="Cajones" id="GE_AAA" size="4" maxlength="4" readonly value="<?=$GE_AAA?>"/>
               <span>Mes:</span>
-              <input name="GE_MES" type="text" class="Cajones" id="GE_MES" size="1" maxlength="2" readonly value="<?=$GE_MES?>"/>
+              <input name="GE_MES" type="text" class="Cajones" id="GE_MES" size="2" maxlength="2" readonly value="<?=$GE_MES?>"/>
               <span>Día:</span>
-              <input name="GE_DIA" type="text" class="Cajones" id="GE_DIA" size="1" maxlength="2" readonly value="<?=$GE_DIA?>"/>
+              <input name="GE_DIA" type="text" class="Cajones" id="GE_DIA" size="2" maxlength="2" readonly value="<?=$GE_DIA?>"/>
             </td>
           </tr>
           <tr>
@@ -357,7 +365,9 @@ if( strlen($GE_InicioMinuto) == 1)
     </select></td>
                 <td width="10%" class="TituloGrande">No de cto:</td>
                 <td width="44%"><label for="textfield"></label>
-                  <input name="GE_CTO" type="text" class="Cajones" id="GE_CTO"   value="<?=$GE_CTO?>" size="15"/></td>
+                  <input name="GE_CTO" type="text" class="Cajones" id="GE_CTO"   value="<?=$GE_CTO?>" size="15"/>
+                </td>
+                  
               </tr>
             </table>              &nbsp;</td>
           </tr>
