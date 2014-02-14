@@ -7,8 +7,8 @@
   <link rel="shortcut icon" type="image/ico" href="Img/favicon.ico"> 
   
   <link href="st/tools/jquerymobile.css" rel="stylesheet" type="text/css" />
-  <script src="st/tools/jquery.js"></script>
-  <script src="st/tools/jquerymobile.js"></script>
+  <script src="Tools/HTML5/jquery.js"></script>
+  <script src="Tools/HTML5/jquerymobile.js"></script>
 
   <? include "include/VarGlobales.PHP"; ?>
   <title><?=$NOMPROYECTO?></title>
@@ -23,34 +23,6 @@
 <body>
   
 <script language="JavaScript" type="text/javascript">
-
-$.mobile.document
-      .on( "listviewcreate", "#filter-menu", function( e ) {
-        var input,
-            listbox = $( "#filter-menu-listbox" ),
-            form = listbox.jqmData( "filter-form" ),
-            listview = $( e.target );
-        if ( !form ) {
-            input = $( "<input data-type='search'></input>" );
-            form = $( "<form></form>" ).append( input );
-            input.textinput();
-            $( "#filter-menu-listbox" )
-                .prepend( form )
-                .jqmData( "filter-form", form );
-        }
-        listview.filterable({ input: input });
-    })
-    .on( "pagebeforeshow pagehide", "#filter-menu-dialog", function( e ) {
-        var form = $( "#filter-menu-listbox" ).jqmData( "filter-form" ),
-            placeInDialog = ( e.type === "pagebeforeshow" ),
-            destination = placeInDialog ? $( e.target ).find( ".ui-content" ) : $( "#filter-menu-listbox" );
-        form
-            .find( "input" )
-            .textinput( "option", "inset", !placeInDialog )
-            .end()
-            .prependTo( destination );
-    });
-
   function valideInicio()
   { 
     if(inicio.PR_ID.value=="")
@@ -237,17 +209,17 @@ function valideFotos()
 		 ECHO "EN INICIO: ".$ENINICIO;
 	    IF($ENINICIO==0)
 		{?>
-            <td width="136"  class="titulosFondoGrisGrande"><a href="MarcoFormatoBB2.php?usr=<?=$usr?>&us_menu=<?=$us_menu?>&Monstrar=FormatoBB2.php&nuevo=1"><img src="Img/compx.gif" width="20" height="20" border="0" />Nuevo</a></td>
+            <td class='MarcoFormatoMenuNuevoContenedor'><button onclick="window.location.replace('MarcoFormatoBB2.php?usr=<?=$usr?>&us_menu=<?=$us_menu?>&Monstrar=FormatoBB2.php&nuevo=1')"><img src="Img/compx.gif" width="20" height="20" border="0" />Nuevo</button></td>
         <?
 		}
 		?>
-            <td width="147"  class="titulosFondoGrisGrande"><a href="BuscarGuiaBB.php?usr=<?=$usr?>&us_menu=<?=$us_menu?>"><img src="Img/editar.gif" width="20" height="20" border="0" />Consulta</a></td>
+            <td class='MarcoFormatoMenuNuevoContenedor'><button onclick="window.location.replace('BuscarGuiaBB.php?usr=<?=$usr?>&us_menu=<?=$us_menu?>')"><img src="Img/editar.gif" width="20" height="20" border="0" />Consulta</button></td>
 		<?
 		
 		if($GE_NO_INSPECCION<>"")
 		{
 		?>	
-            <td width="168"  class="titulosFondoGrisGrande"><a href="RepBB.php?usr=<?=$usr?>&us_menu=<?=$us_menu?>&GE_NO_INSPECCION=<?=$GE_NO_INSPECCION?>">Reporte</a></td>
+            <td class='MarcoFormatoMenuNuevoContenedor'><button class='MarcoFormatoMenuNuevo' onclick="window.location.replace('RepBB.php?usr=<?=$usr?>&us_menu=<?=$us_menu?>&GE_NO_INSPECCION=<?=$GE_NO_INSPECCION?>')">Reporte</button></td>
          <?
 		
          

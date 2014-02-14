@@ -20,3 +20,40 @@
 .ui-selectmenu.ui-dialog .ui-header {
     border-bottom-width: 1px;
 }
+#Formato_tdEM_ID article
+{
+	border-radius: 0.5em;
+	cursor: pointer;
+	display: inline-block;
+	height: 7em;
+	margin: 1%;
+	overflow: hidden;
+	padding: 1%;
+	vertical-align: top;
+	width: 25%;
+}
+.Contratos_MasInfo
+{
+	background: #DBDBDB;
+	border-radius: 0.5em;
+	font-size: 0.6em;
+	float: right;
+	min-height: 2em;
+	min-width: 50%;
+	text-align: right;
+}
+.Contratos_Seleccionado
+{
+	background: peru;
+}
+.Contratos_SinSeleccionar
+{
+	background: #A9A9A9;
+}
+.MarcoFormatoMenuNuevoContenedor
+{
+	border-radius: 0.5em;
+	height: 4em;
+	text-align:center;
+	width: 33%;
+}
